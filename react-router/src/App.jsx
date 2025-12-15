@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+// Jokainen näkymä on siis toteutettu omana komponenttinaan, ja sovelluksen tilassa page pidetään tieto siitä, mitä näkymää vastaava komponentti menupalkin alla näytetään.
+
+import { useState } from "react";
 import ReactDOM from "react-dom/client";
 
 const Home = () => (
@@ -44,6 +46,7 @@ const App = () => {
     padding: 5,
   };
 
+  // Sovelluksen renderöinnissä on nyt linkit, jotka kutsuvat toPage-funktiota, ja content-funktio, joka palauttaa oikean komponentin sivun tilan perusteella.
   return (
     <div>
       <div>
