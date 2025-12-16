@@ -1,7 +1,10 @@
-// Jokainen näkymä on siis toteutettu omana komponenttinaan, ja sovelluksen tilassa page pidetään tieto siitä, mitä näkymää vastaava komponentti menupalkin alla näytetään.
+// Jokaisella näkymällä tulisi olla oma osoitteensa, jotta käyttäjä voi navigoida sovelluksessa.
+// React Routerin avulla voidaan määritellä reitit ja linkit sovellukselle.
+// npm install react-router-dom
+// Reititys eli komponenttien ehdollinen, selaimen URL:iin perustuva renderöinti otetaan käyttöön sijoittamalla komponentteja Router-komponentin lapsiksi eli Router-tagien sisälle.
+// BrowserRouter is a Router that uses the HTML5 history API (pushState, replaceState and the popstate event) to keep your UI in sync with the URL.
 
-import { useState } from "react";
-import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"; // Reitityskomponentit
 
 const Home = () => (
   <div>
@@ -25,45 +28,35 @@ const Users = () => (
 );
 
 const App = () => {
-  const [page, setPage] = useState("home");
-
-  const toPage = (page) => (event) => {
-    event.preventDefault();
-    setPage(page);
-  };
-
-  const content = () => {
-    if (page === "home") {
-      return <Home />;
-    } else if (page === "notes") {
-      return <Notes />;
-    } else if (page === "users") {
-      return <Users />;
-    }
-  };
-
   const padding = {
     padding: 5,
   };
 
-  // Sovelluksen renderöinnissä on nyt linkit, jotka kutsuvat toPage-funktiota, ja content-funktio, joka palauttaa oikean komponentin sivun tilan perusteella.
   return (
-    <div>
+    <Router>
       <div>
-        <a href="" onClick={toPage("home")} style={padding}>
+        <Link style={padding} to="/">
           home
-        </a>
-        <a href="" onClick={toPage("notes")} style={padding}>
+        </Link>
+        <Link style={padding} to="/notes">
           notes
-        </a>
-        <a href="" onClick={toPage("users")} style={padding}>
+        </Link>
+        <Link style={padding} to="/users">
           users
-        </a>
+        </Link>
       </div>
 
-      {content()}
-    </div>
+      <Routes>
+        <Route path="/notes" element={<Notes />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
+
+      <div>
+        <i>Note app, Department of Computer Science 2023</i>
+      </div>
+    </Router>
   );
 };
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+export default App;
