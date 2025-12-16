@@ -67,12 +67,13 @@ const Users = () => (
 );
 
 const Login = (props) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // useNavigate hook gives access to the navigate function
 
+  // Handle the form submission
   const onSubmit = (event) => {
-    event.preventDefault();
-    props.onLogin("mluukkai");
-    navigate("/");
+    event.preventDefault(); // Prevent the default form submission behavior
+    props.onLogin("mluukkai"); // Call the onLogin function passed via props, simulating a successful login
+    navigate("/"); // Programmatically navigate to the home page after login
   };
 
   return (
@@ -113,8 +114,9 @@ const App = () => {
     },
   ]);
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null); // State to track the logged-in user
 
+  // Function to handle user login
   const login = (user) => {
     setUser(user);
   };
