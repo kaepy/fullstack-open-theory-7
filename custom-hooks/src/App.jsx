@@ -61,6 +61,11 @@ const App = () => {
   const born = useField("date");
   const height = useField("number");
 
+  // Vielä parempi tapa käyttää spread operaattoria
+  const nameSpread = useField("text");
+  const bornSpread = useField("date");
+  const heightSpread = useField("number");
+
   return (
     <div>
       <div style={{ marginBottom: "20px" }}>
@@ -134,6 +139,27 @@ const App = () => {
         </form>
         <div>
           {name.value} {born.value} {height.value}
+        </div>
+      </div>
+      <div style={{ marginBottom: "20px" }}>
+        <h3>
+          Spread operaattorin käyttö, jolloin ei tarvitse erikseen määritellä
+          jokaista attribuuttia, mutta tämä voi tehdä koodista hieman vähemmän
+          luettavan, koska ei näe suoraan mitä attribuutteja komponenttiin
+          välitetään.
+        </h3>
+        <form>
+          name:
+          <input {...nameSpread} />
+          <br />
+          birthdate:
+          <input {...bornSpread} />
+          <br />
+          height:
+          <input {...heightSpread} />
+        </form>
+        <div>
+          {nameSpread.value} {bornSpread.value} {heightSpread.value}
         </div>
       </div>
     </div>
