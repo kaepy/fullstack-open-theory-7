@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 import { useState } from "react";
-import { Table, Form, Button } from "react-bootstrap";
+import { Table, Form, Button, Alert } from "react-bootstrap";
 
 import {
   BrowserRouter as Router,
@@ -123,10 +123,15 @@ const App = () => {
   ]);
 
   const [user, setUser] = useState(null); // State to track the logged-in user
+  const [message, setMessage] = useState(null);
 
   // Function to handle user login
   const login = (user) => {
     setUser(user);
+    setMessage(`Welcome ${user}`);
+    setTimeout(() => {
+      setMessage(null);
+    }, 10000);
   };
 
   const padding = {
@@ -140,6 +145,7 @@ const App = () => {
 
   return (
     <div className="container">
+      {message && <Alert variant="success">{message}</Alert>}
       <div>
         <Link style={padding} to="/">
           home
