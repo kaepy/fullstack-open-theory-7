@@ -1,6 +1,14 @@
 const path = require("path"); // import path module
+const webpack = require("webpack");
 
-const config = () => {
+const config = (env, argv) => {
+  console.log("argv.mode:", argv.mode); // log the mode (development or production)
+
+  const backend_url =
+    argv.mode === "production"
+      ? "https://notes2023.fly.dev/api/notes"
+      : "http://localhost:3001/notes";
+
   return {
     entry: "./src/index.js", // relative path is okay
     output: {
@@ -37,6 +45,11 @@ const config = () => {
         },
       ],
     },
+    plugins: [
+      new webpack.DefinePlugin({
+        BACKEND_URL: JSON.stringify(backend_url),
+      }),
+    ],
   };
 };
 

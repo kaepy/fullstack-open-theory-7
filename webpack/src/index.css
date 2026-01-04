@@ -15,3 +15,11 @@
   margin: 5px 10px;
   cursor: pointer;
 }
+
+.cursive {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}
