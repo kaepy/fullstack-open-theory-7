@@ -16,11 +16,12 @@ const config = () => {
           options: {
             presets: [
               [
-                "@babel/preset-react", // use the React preset for Babel
+                "@babel/preset-react", // to transpile JSX syntax
                 {
                   runtime: "automatic", // use the new JSX runtime that tells Babel to import the necessary functions from the React library automatically when JSX is used. With this you don't need to manually import React in every file that uses JSX.
                 },
               ],
+              "@babel/preset-env", // to transpile modern JavaScript (ES6+) to be compatible with older browsers (ES5)
             ],
           },
         },
