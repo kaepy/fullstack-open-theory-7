@@ -25,6 +25,10 @@ const config = () => {
             ],
           },
         },
+        {
+          test: /\.css$/,
+          use: ["style-loader", "css-loader"], // to handle CSS files. Alternative solution is mini-css-extract-plugin.
+        },
       ],
     },
   };
