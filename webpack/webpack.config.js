@@ -7,6 +7,25 @@ const config = () => {
       path: path.resolve(__dirname, "build"), // absolute path is required
       filename: "main.js", // output file name
     },
+    module: {
+      rules: [
+        {
+          // Apply this rule to files ending in .js
+          test: /\.js$/,
+          loader: "babel-loader", // use babel-loader to transpile JavaScript files. babel-loader is a bridge between Babel (a JavaScript compiler) and Webpack (a module bundler).
+          options: {
+            presets: [
+              [
+                "@babel/preset-react", // use the React preset for Babel
+                {
+                  runtime: "automatic", // use the new JSX runtime that tells Babel to import the necessary functions from the React library automatically when JSX is used. With this you don't need to manually import React in every file that uses JSX.
+                },
+              ],
+            ],
+          },
+        },
+      ],
+    },
   };
 };
 
