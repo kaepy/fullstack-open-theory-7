@@ -7,6 +7,11 @@ const config = () => {
       path: path.resolve(__dirname, "build"), // absolute path is required
       filename: "main.js", // output file name
     },
+    devServer: {
+      static: path.resolve(__dirname, "build"),
+      compress: true,
+      port: 3000,
+    },
     module: {
       rules: [
         {
